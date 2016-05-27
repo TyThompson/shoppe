@@ -1,6 +1,6 @@
 require 'json'
 require 'pry'
-require './transactionparser'
+require './transaction_parser'
 
 
 class DataParser
@@ -15,4 +15,3 @@ class DataParser
 	#needs to count users, items
 
 end
-binding.pry

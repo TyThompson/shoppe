@@ -1,10 +1,10 @@
 require 'json'
 require 'pry'
-require './dataparser'
+require './data_parser'
 
 class TransactionParser
 	def initialize(file_path)
-		JSON.parse File.read "path"
+		
 	end
 
 	def path
@@ -12,7 +12,7 @@ class TransactionParser
 	end
 
 	def parse!
-
+		JSON.parse File.read "path"
 	end
 
 	def transaction_count
