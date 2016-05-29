@@ -1,22 +1,26 @@
 require 'json'
 require 'pry'
-require './data_parser'
+require './transaction'
 
 class TransactionParser
-	def initialize(file_path)
-		
-	end
 
-	def path
-		"tests/"+"file_path"+".json"
+	attr_accessor(
+		:file_path,
+		:data
+	)
+	
+	def initialize(file_path)
+		self.file_path = file_path
+		@data = []
 	end
 
 	def parse!
-		JSON.parse File.read "path"
+		# use * splat operator to get multiple arguments to Transaction.new
+		@data = JSON.parse(File.read(file_path)).map {|tx| Transaction.new(*tx.values_at(*%w(timestamp user_id item_id quantity)))  }
 	end
 
 	def transaction_count
-
+		data.count
 	end
 
 end

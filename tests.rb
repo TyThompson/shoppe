@@ -10,6 +10,8 @@ require "./user"
 require "./data_parser"
 require "./transaction_parser"
 
+#binding.pry
+
 
 class Minitest::Test
   # A little magic here, but this adds a `file_path` helper
