@@ -5,6 +5,9 @@ require './api_data_parser'
 require './shoppe_database'
 require './token'
 
+puts "Which date would you like to check transactions? Format: YYYY-MM-DD"
+date = Date.parse(gets.chomp)
+# date = "2016-04-04"
 
 password = @token
 tp = ApiTransactionParser.new(password)
