@@ -5,23 +5,14 @@ require 'bigdecimal' # to avoid floating point precision issues with money
 
 class ShoppeDatabase
 	attr_accessor(
-		:transaction_file_path,
-		:data_file_path
+		:transaction_parser,
+		:data_parser
 	)
 
-	def initialize(transaction_file_path:, data_file_path:)
-		self.transaction_file_path = transaction_file_path
-		self.data_file_path = data_file_path
+	def initialize(transaction_parser:, data_parser:)
+		self.transaction_parser = transaction_parser
+		self.data_parser = data_parser
 	end
-
-	def data_parser
-		@data_parser ||= begin
-			dp = DataParser.new(data_file_path)
-			dp.parse!
-			dp
-		end
-	end
-
 
 	# returns { user_id => user, ... }
 	def indexed_users
@@ -31,14 +22,6 @@ class ShoppeDatabase
 	# returns { item_id => item, ... }
 	def indexed_items
 		@indexed_items ||= Hash[data_parser.items.map { |x| [x.id, x] }]
-	end
-
-	def transaction_parser
-		@transaction_parser ||= begin
-			tp = TransactionParser.new(transaction_file_path)
-			tp.parse!
-			tp
-		end
 	end
 
 	def user_by_id(user_id)

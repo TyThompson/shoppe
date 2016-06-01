@@ -1,6 +1,13 @@
 require './shoppe_database'
+require './data_parser'
+require './transaction_parser'
+tp = TransactionParser.new('data/transactions.json')
+dp = DataParser.new('data/data.json')
 
-db = ShoppeDatabase.new(transaction_file_path: 'data/transactions.json', data_file_path: 'data/data.json')
+tp.parse!
+dp.parse!
+
+db = ShoppeDatabase.new(transaction_parser: tp, data_parser: dp)
 
 
 puts "The user that made the most orders was #{db.user_with_most_orders.name}"

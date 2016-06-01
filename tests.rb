@@ -9,6 +9,7 @@ require "./item"
 require "./user"
 require "./data_parser"
 require "./transaction_parser"
+require "./shoppe_database"
 
 #binding.pry
 
